@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, develop ]
 
 
 jobs:
@@ -33,6 +33,7 @@ jobs:
 
     - name: build docker
       run: |
+        echo ${{ github.ref }}
         docker build . -t ghcr.io/mehdi-mostafavi/saku:${{ github.sha }}
 
     - name: push

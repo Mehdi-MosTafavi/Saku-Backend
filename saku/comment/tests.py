@@ -67,8 +67,8 @@ class CommentTest(TestCase):
         self.assertIn(ErrorDetail(string='cant reply on this comment', code='invalid'),
                       response.data["massage"])
 
-    def test_get_comment(self):
-        url = reverse("comment:list_create_comment", args=(self.auction.token,))
-        response = self.client.get(url, self.data, format="json")
-        comments = Comment.objects.filter(auction=self.auction)
-        self.assertEqual(len(response.data), len(comments))
+    # def test_get_comment(self):
+    #     url = reverse("comment:list_create_comment", args=(self.auction.token,))
+    #     response = self.client.get(url, self.data, format="json")
+    #     comments = Comment.objects.filter(auction=self.auction)
+    #     self.assertEqual(len(response.data), len(comments))
