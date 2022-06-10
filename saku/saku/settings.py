@@ -20,6 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-fhk79x(^a9w%v!zm!6%iho2(^rv&q8s^x!cm)(3q*gsl^r7^@='
 
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '188.121.110.151']
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "True").lower() == "true"
 
@@ -36,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_minio_backend',
     'rest_framework',
     'django_filters',
     'drf_yasg',
@@ -185,3 +188,16 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "saku.project.app@gmail.com"
 EMAIL_HOST_PASSWORD = "jnuzfnsrbbaqsjhl"
+
+# MINIO_EXTERNAL_ENDPOINT = "0.0.0.0:9008"
+MINIO_EXTERNAL_ENDPOINT = "188.121.110.151:9008"
+MINIO_EXTERNAL_ENDPOINT_USE_HTTPS = False
+MINIO_ENDPOINT = 'minio:9008'
+MINIO_ACCESS_KEY = 'saku'
+MINIO_SECRET_KEY = '12345678'
+MINIO_STORAGE_USE_HTTPS = False
+MINIO_STORAGE_MEDIA_BUCKET_NAME = 'local-media'
+MINIO_PRIVATE_BUCKETS = [
+    'contents'
+]
+MINIO_USE_HTTPS = False

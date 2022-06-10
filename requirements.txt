@@ -30,3 +30,5 @@ sqlparse==0.4.2
 tzdata==2021.5
 uritemplate==4.1.1
 urllib3==1.26.9
+minio==7.1.7
+django-minio-backend==3.3.2

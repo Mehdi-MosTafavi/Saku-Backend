@@ -1,4 +1,4 @@
-version: "3"
+version: "3.3"
 
 services:
   db:
@@ -22,3 +22,13 @@ services:
       - "8888:8888"
     depends_on:
       - db
+      - minio
+
+  minio:
+    image: m.docker-registry.ir/minio/minio:edge
+    command: minio server ./data --address '0.0.0.0:9008' --console-address "0.0.0.0:9007"
+    ports:
+      - "9007:9007"
+      - "9008:9008"
+    volumes:
+      - ./storage/minio:/data
