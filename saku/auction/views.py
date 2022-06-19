@@ -1,11 +1,12 @@
 import base64
 from drf_yasg.utils import swagger_auto_schema
+from auction.serializers import CreateAuctionRequestSerializer, GetAuctionRequestSerializer, GetCategoriesSerializer
 from rest_framework import generics, status
 from auction.serializers import CreateAuctionRequestSerializer, GetAuctionRequestSerializer, UpdateAuctionRequestSerializer
 from rest_framework.response import Response
 from saku.serializers import GeneralCreateResponseSerializer, GeneralErrorResponseSerializer
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from auction.models import Auction, Tags
+from rest_framework.permissions import IsAuthenticated
+from auction.models import Auction, Category, Tags
 
 
 class CreateListAuction(generics.ListCreateAPIView):
@@ -78,3 +79,9 @@ class DetailedAuction(generics.RetrieveUpdateAPIView):
 
     def get_serializer_context(self):
         return {"token": self.kwargs['token']}
+
+
+class CategoryList(generics.ListAPIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = GetCategoriesSerializer
+    queryset = Category.objects.all()
