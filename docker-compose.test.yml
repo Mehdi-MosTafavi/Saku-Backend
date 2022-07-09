@@ -13,18 +13,18 @@ services:
       - "5432:5432"
 
   redis:
-    image: m.docker-registry.ir/redis:7.0.1-alpine
+    image: redis:7.0.2-alpine
     command: redis-server
     ports:
-      - "16379:6379"
+      - 216379:6379"
 
   web:
     image: "ghcr.io/mehdi-mostafavi/saku:${TAG}"
-    command: /bin/sh -c "cd saku && sleep 10 && python manage.py test"
+    command: /bin/sh -c "cd saku && sleep 10 && coverage run ./manage.py test && coverage report"
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
+      - "8888:8888"
     depends_on:
       - db
       - redis
