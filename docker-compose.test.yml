@@ -16,7 +16,7 @@ services:
     image: redis:7.0.2-alpine
     command: redis-server
     ports:
-      - "216379:6379"
+      - "16379:6379"
 
   web:
     image: "ghcr.io/mehdi-mostafavi/saku:${TAG}"
